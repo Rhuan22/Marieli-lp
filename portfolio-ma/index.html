@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marieli da Silva Gomes | Biomedicina</title>
+    <style>
+        :root {
+            --bg: #f8f6ee;
+            --text: #244033;
+            --muted: #617368;
+            --sage: #b9cbb1;
+            --sage-dark: #516d59;
+            --sage-light: #eaf3e9;
+            --sage-soft: #ddebdc;
+            --sage-deep: #304d37;
+            --sage-glass: rgba(255,255,255,0.72);
+            --shadow: rgba(30,50,34,0.14);
+            --line: rgba(80,110,80,0.2);
+            --serif: Georgia, "Times New Roman", serif;
+            --sans: "Inter", "Segoe UI", Arial, sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            margin: 0;
+            color: var(--text);
+            background:
+                radial-gradient(circle at 78% 8%, var(--sage-light), transparent 18%),
+                radial-gradient(circle at 38% 92%, var(--sage-soft), transparent 22%),
+                linear-gradient(135deg, var(--bg), #eef4ee);
+            font-family: var(--sans);
+            line-height: 1.6;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            inset: -20%;
+            background-image: radial-gradient(var(--line) 1px, transparent 1px);
+            background-size: 34px 34px;
+            transform: rotate(-8deg);
+            pointer-events: none;
+            mask-image: linear-gradient(180deg, rgba(0,0,0,1), transparent 100%);
+            opacity: 0.5;
+        }
+
+        body::after {
+            content: "";
+            position: fixed;
+            width: 360px;
+            height: 360px;
+            border-radius: 50%;
+            left: -160px;
+            top: -100px;
+            border: 1px solid var(--line);
+            filter: blur(.3px);
+            box-shadow: inset 0 0 60px var(--sage-soft);
+        }
+
+        header#title {
+            width: min(1180px, calc(100% - 96px));
+            margin: 0 auto;
+            padding: 36px 0 20px;
+            display: flex;
+            align-items: center;
+            gap: 26px;
+            flex-wrap: wrap;
+            position: relative;
+            z-index: 2;
+        }
+
+        header#title img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--sage-soft);
+            box-shadow: 0 10px 30px var(--shadow), inset 0 0 0 4px rgba(255,255,255,0.9);
+            transition: transform 500ms ease, box-shadow 500ms ease;
+        }
+
+        header#title img:hover {
+            transform: scale(1.05) rotate(2deg);
+            box-shadow: 0 16px 40px var(--shadow);
+        }
+
+        header#title h1 {
+            margin: 0 0 10px;
+            font-family: var(--serif);
+            font-weight: 700;
+            font-size: clamp(2rem, 4vw, 3rem);
+            color: var(--sage-deep);
+            letter-spacing: -0.03em;
+            text-shadow: 1px 1px 0 rgba(255,255,255,0.7);
+        }
+
+        header#title .contato {
+            margin-left: auto;
+            padding: 10px 16px;
+            border-left: 2px solid var(--sage);
+            background: var(--sage-glass);
+            backdrop-filter: blur(14px);
+            border-radius: 16px;
+            box-shadow: 0 8px 20px var(--shadow);
+        }
+
+        header#title .contato p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 0.96rem;
+        }
+
+        .landing-page {
+            width: min(1180px, calc(100% - 96px));
+            margin: 0 auto;
+            padding: 8px 0 60px;
+        }
+
+        .landing-page .hero {
+            display: grid;
+            grid-template-columns: minmax(610px, 2fr) minmax(280px, 1fr);
+            align-items: center;
+            gap: 30px;
+            padding: clamp(30px, 5vw, 46px);
+            border-radius: 30px;
+            background: var(--sage-glass);
+            border: 1px solid var(--line);
+            box-shadow: 0 20px 60px var(--shadow);
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(12px);
+        }
+
+        .landing-page .hero::before {
+            content: "";
+            position: absolute;
+            top: -80px;
+            right: -80px;
+            width: 240px;
+            height: 240px;
+            border-radius: 50%;
+            background: radial-gradient(circle, var(--sage), transparent 70%);
+            filter: blur(50px);
+            opacity: 0.7;
+            transform: rotate(20deg);
+        }
+
+        .hero-text {
+            position: relative;
+            z-index: 1;
+        }
+
+        .tagline {
+            display: inline-block;
+            color: var(--sage-deep);
+            background: var(--sage-soft);
+            padding: 8px 14px;
+            border-radius: 999px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            font-weight: 700;
+            font-size: 0.75rem;
+            border: 1px solid var(--line);
+            margin-bottom: 16px;
+        }
+
+        .hero-text h2, .contato-text h2, .servicos h2, .sobre h2 {
+            color: var(--sage-deep);
+            font-family: var(--serif);
+            font-size: clamp(2rem, 3vw, 2.8rem);
+            line-height: 1.2;
+            margin: 0 0 16px;
+            letter-spacing: -0.025em;
+        }
+
+        .hero-text p {
+            color: var(--muted);
+            font-size: 1.04rem;
+            max-width: 760px;
+            margin: 0 0 30px;
+        }
+
+        .hero-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+
+        .hero-actions a,
+        .gmail-form button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 46px;
+            padding: 12px 22px;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.96rem;
+            text-decoration: none;
+            transition: transform 280ms ease, box-shadow 280ms ease, background 280ms ease;
+        }
+
+        .hero-actions .btn-primary,
+        .gmail-form button {
+            background: var(--sage-deep);
+            color: #fff;
+            border: 1px solid var(--sage-deep);
+            box-shadow: 0 12px 26px var(--shadow);
+        }
+
+        .hero-actions .btn-secondary {
+            color: var(--sage-deep);
+            background: transparent;
+            border: 1px solid var(--sage-deep);
+        }
+
+        .hero-actions a:hover,
+        .gmail-form button:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 16px 30px var(--shadow);
+        }
+
+        .hero-card {
+            background: linear-gradient(170deg, var(--sage-deep), var(--sage-deep));
+            color: #eef5ee;
+            padding: 30px 26px;
+            border-radius: 24px;
+            border: 1px solid var(--sage-deep);
+            box-shadow: 0 20px 40px var(--shadow);
+            position: relative;
+            z-index: 1;
+            isolation: isolate;
+        }
+
+        .hero-card::before {
+            content: "";
+            position: absolute;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            right: -30px;
+            top: -40px;
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.3);
+            filter: blur(.2px);
+        }
+
+        .hero-card h3 {
+            font-family: var(--serif);
+            font-size: 1.7rem;
+            margin: 0 0 18px;
+        }
+
+        .hero-card ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: grid;
+            gap: 12px;
+        }
+
+        .hero-card li {
+            padding: 12px 0;
+            border-top: 1px solid rgba(255,255,255,0.35);
+            color: #ddebdc;
+        }
+
+        .hero-card li:last-child {
+            border-bottom: 1px solid rgba(255,255,255,0.35);
+        }
+
+        .sobre, .servicos, .contato-final {
+            margin-top: 30px;
+            padding: clamp(30px, 4vw, 42px);
+            border-radius: 30px;
+            background: var(--sage-glass);
+            border: 1px solid var(--line);
+            box-shadow: 0 14px 30px var(--shadow);
+            backdrop-filter: blur(11px);
+        }
+
+        .sobre p {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .sobre .competencias,
+        .sobre .formacao {
+            display: grid;
+            gap: 12px;
+            padding-left: 24px;
+            color: var(--muted);
+        }
+
+        .servicos h2 {
+            margin-bottom: 20px;
+        }
+
+        .grid-servicos {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(180px, 1fr));
+            gap: 16px;
+        }
+
+        .grid-servicos article {
+            background: rgba(255,255,255,0.55);
+            padding: 24px;
+            border-radius: 22px;
+            border: 1px solid var(--line);
+            transition: transform 320ms ease, background 320ms ease, box-shadow 320ms ease;
+        }
+
+        .grid-servicos article:hover {
+            transform: translateY(-8px);
+            background: var(--sage-soft);
+            box-shadow: 0 16px 36px var(--shadow);
+        }
+
+        .grid-servicos h3 {
+            color: var(--sage-deep);
+            font-family: var(--serif);
+            font-size: 1.45rem;
+            margin: 0 0 12px;
+        }
+
+        .grid-servicos p {
+            color: var(--muted);
+            margin: 0;
+        }
+
+        .contato-final {
+            display: grid;
+            grid-template-columns: minmax(380px, 1fr) minmax(420px, 1fr);
+            align-items: center;
+            gap: 32px;
+        }
+
+        .contato-text p {
+            color: var(--muted);
+            max-width: 560px;
+        }
+
+        .gmail-form {
+            display: grid;
+            gap: 12px;
+            background: var(--sage-glass);
+            padding: 26px;
+            border-radius: 24px;
+            border: 1px solid var(--line);
+        }
+
+        .gmail-form label {
+            font-weight: 700;
+            color: var(--sage-deep);
+            font-size: 0.92rem;
+        }
+
+        .gmail-form input,
+        .gmail-form textarea {
+            width: 100%;
+            min-height: 48px;
+            padding: 12px 14px;
+            border-radius: 14px;
+            border: 1px solid var(--line);
+            background: rgba(255,255,255,0.85);
+            color: var(--text);
+            font-family: var(--sans);
+            outline: none;
+            transition: border-color 250ms ease, box-shadow 250ms ease, background 250ms ease;
+        }
+
+        .gmail-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+
+        .gmail-form input:focus,
+        .gmail-form textarea:focus {
+            border-color: var(--sage-deep);
+            box-shadow: 0 0 0 3px var(--sage-soft);
+            background: #fff;
+        }
+
+        @media (max-width: 940px) {
+            header#title {
+                width: min(100%, calc(100% - 40px));
+                align-items: center;
+            }
+
+            header#title .contato {
+                margin-left: 0;
+            }
+
+            .landing-page {
+                width: min(100%, calc(100% - 40px));
+            }
+
+            .landing-page .hero,
+            .contato-final,
+            .grid-servicos {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header id="title">
+        <img src="assets/marieli.jpg" alt="Foto de Marieli da Silva Gomes" width="200" height="200">
+        <h1>Marieli da Silva Gomes</h1>
+        <div class="contato">
+            <p>Email: marielicorralgomes@gmail.com</p>
+            <p>Telefone: (45) 99127-4278</p>
+        </div>
+    </header>
+
+    <main class="landing-page">
+        <section class="hero">
+            <div class="hero-text">
+                <span class="tagline">Biomedicina e cuidado com a saúde</span>
+                <h2>Saúde, laboratório e acolhimento em harmonia</h2>
+                <p>
+                    A atuação de Marieli da Silva Gomes está conectada à saúde humana, ao conhecimento científico,
+                    ao trabalho em equipe e à atenção com as pessoas. A busca por atualização e a dedicação à área
+                    fortalecem uma rotina centrada em cuidado, organização e responsabilidade.
+                </p>
+                <div class="hero-actions">
+                    <a class="btn-primary" href="#contato">Solicitar contato</a>
+                    <a class="btn-secondary" href="#sobre">Conhecer perfil</a>
+                </div>
+            </div>
+
+            <aside class="hero-card">
+                <h3>Especialidades</h3>
+                <ul>
+                    <li>Estética</li>
+                    <li>Análises clínicas</li>
+                    <li>Laboratório</li>
+                    <li>Comunicação clínica</li>
+                </ul>
+            </aside>
+        </section>
+
+        <section class="sobre" id="sobre">
+            <h2>Sobre mim</h2>
+            <p>
+                Olá, meu nome é Marieli da Silva Gomes, tenho 34 anos, sou formada em Biomedicina no Unigrupo FAEF,
+                em Itapeva/SP. Tenho muito interesse e apego com a área da saúde, e por isso busco sempre me
+                atualizar e aprender mais sobre o assunto. Sou uma pessoa dedicada, responsável e comprometida com
+                tudo que faço. Gosto de trabalhar em equipe e acredito que a colaboração é essencial para alcançar
+                resultados positivos. Além disso, sou apaixonada por ajudar os outros e contribuir para o bem-estar
+                das pessoas ao meu redor.
+            </p>
+
+            <h2>Competências</h2>
+            <ul class="competencias">
+                <li>Conhecimentos em laboratório</li>
+                <li>Habilidade em comunicação</li>
+                <li>Trabalho em equipe</li>
+                <li>Organização e planejamento</li>
+                <li>Proatividade</li>
+            </ul>
+
+            <h2>Formação</h2>
+            <ul class="formacao">
+                <li>Graduação em Biomedicina - Unigrupo FAEF</li>
+                <li>Ensino Médio - Sesi</li>
+            </ul>
+        </section>
+
+        <section class="servicos">
+            <h2>Como posso contribuir</h2>
+            <div class="grid-servicos">
+                <article>
+                    <h3>Laboratório</h3>
+                    <p>Aplicação de conhecimentos em laboratório com atenção às boas práticas e ao cuidado com o processo.</p>
+                </article>
+                <article>
+                    <h3>Saúde</h3>
+                    <p>Compromisso com a saúde, a educação e a melhoria contínua de processos ligados ao bem-estar.</p>
+                </article>
+                <article>
+                    <h3>Equipe</h3>
+                    <p>Atuação colaborativa, comunicação clara e foco em resultados positivos para a comunidade.</p>
+                </article>
+            </div>
+        </section>
+
+        <section class="contato-final" id="contato">
+            <div class="contato-text">
+                <span class="tagline">Entre em contato</span>
+                <h2>Fale com Marieli da Silva Gomes</h2>
+                <p>
+                    Se você deseja conversar sobre saúde, educação profissional, laboratório ou oportunidades de
+                    colaboração, envie uma mensagem pelo formulário abaixo.
+                </p>
+            </div>
+
+            <form class="gmail-form">
+                <label for="nome">Nome</label>
+                <input type="text" id="nome" name="nome" placeholder="Seu nome" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" placeholder="seu@email.com" required>
+
+                <label for="assunto">Assunto</label>
+                <input type="text" id="assunto" name="assunto" placeholder="Assunto">
+
+                <label for="mensagem">Mensagem</label>
+                <textarea id="mensagem" name="mensagem" rows="5" placeholder="Escreva sua mensagem" required></textarea>
+
+                <button type="submit" class="btn-primary">Enviar por Gmail</button>
+            </form>
+        </section>
+    </main>
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
